@@ -3,10 +3,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Data
 {
-    public class LibraryDataContext : DbContext
+    public class DataContext : DbContext
     {
-        public LibraryDataContext(DbContextOptions<LibraryDataContext> options) : base(options)
+        public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
+
         }
 
         public DbSet<Author> Authors { get; set; }

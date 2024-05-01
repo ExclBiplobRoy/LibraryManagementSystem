@@ -30,5 +30,7 @@ namespace Domain.Entities
         [Required]
         [EmailAddress]
         public string Email { get; set; }
+
+        public virtual IEnumerable<BorrowedBook>? BorrowedBooks { get; set; }
     }
 }

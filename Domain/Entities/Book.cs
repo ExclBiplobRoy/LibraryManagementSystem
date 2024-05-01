@@ -28,9 +28,11 @@ namespace Domain.Entities
         [Display(Name = "Total Copies")]
         public int TotalCopies { get; set; }
 
-        [ForeignKey("Author")]
         public int AuthorID { get; set; }
 
-        public Author Author { get; set; }
+        [ForeignKey("AuthorID")]
+        public virtual Author Author { get; set; }
+
+        public virtual IEnumerable<BorrowedBook>? BorrowedBooks { get; set; }
     }
 }

@@ -15,5 +15,7 @@ namespace Domain.Entities
         [StringLength(500)]
         [Display(Name = "Author Biography")]
         public string? AuthorBio { get; set; }
+
+        public virtual IEnumerable<Book>? Books { get; set; }
     }
 }

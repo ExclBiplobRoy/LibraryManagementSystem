@@ -14,20 +14,20 @@ namespace Domain.Entities
         public DateTime BorrowDate { get; set; }
 
         [Required]
-        [ForeignKey("Member")]
         public int MemberID { get; set; }
 
-        public Member Member { get; set; }
+        [ForeignKey("MemberID")]
+        public virtual Member Member { get; set; }
 
         [DataType(DataType.Date)]
         [Display(Name = "Return Date")]
         public DateTime? ReturnDate { get; set; }
 
         [Required]
-        [ForeignKey("Book")]
         public int BookID { get; set; }
 
-        public Book Book { get; set; }
+        [ForeignKey("BookID")]
+        public virtual Book Book { get; set; }
 
         [Required]
         [StringLength(20)]

@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data.csproj", "{70974F0D-ABF5-42D9-BB7F-38DE83CE1995}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFLibraryManagementSystem", "WPFLibraryManagementSystem\WPFLibraryManagementSystem.csproj", "{3F39C770-343D-488C-B992-78A90413F8D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFLibraryManagementSystem", "WPFLibraryManagementSystem\WPFLibraryManagementSystem.csproj", "{3F39C770-343D-488C-B992-78A90413F8D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "Utilities\Utilities.csproj", "{691E4581-DBDD-4697-B88A-8682EC0C0746}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{3F39C770-343D-488C-B992-78A90413F8D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F39C770-343D-488C-B992-78A90413F8D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F39C770-343D-488C-B992-78A90413F8D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{691E4581-DBDD-4697-B88A-8682EC0C0746}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{691E4581-DBDD-4697-B88A-8682EC0C0746}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{691E4581-DBDD-4697-B88A-8682EC0C0746}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{691E4581-DBDD-4697-B88A-8682EC0C0746}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

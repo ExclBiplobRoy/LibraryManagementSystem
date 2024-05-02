@@ -15,5 +15,41 @@
 
         public const string DeleteAuthor = "author/{key}";
         #endregion
+
+        #region Book
+        public const string CreateBook = "book";
+
+        public const string RaedBooks = "books";
+
+        public const string ReadBookByKey = "book/key/{key}";
+
+        public const string UpdateBook = "book/{key}";
+
+        public const string DeleteBook = "book/{key}";
+        #endregion
+
+        #region Member
+        public const string CreateMember = "member";
+
+        public const string RaedMembers = "members";
+
+        public const string ReadMemberByKey = "member/key/{key}";
+
+        public const string UpdateMember = "member/{key}";
+
+        public const string DeleteMember = "member/{key}";
+        #endregion
+
+        #region Borrowed
+        public const string CreateBorrowedBook = "borrowed-book";
+
+        public const string RaedBorrowedBooks = "borrowed-books";
+
+        public const string ReadBorrowedBookByKey = "borrowed-book/key/{key}";
+
+        public const string UpdateBorrowedBook = "borrowed-book/{key}";
+
+        public const string DeleteBorrowedBook = "borrowed-book/{key}";
+        #endregion
     }
 }

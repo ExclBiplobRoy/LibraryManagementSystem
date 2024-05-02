@@ -16,5 +16,11 @@ namespace Infrastructure.Contracts
 
         // Author
         IAuthorRepository AuthorRepository { get; }
+
+        IBookRepository BookRepository { get; }
+
+        IMemberRepository MemberRepository { get; }
+
+        IBorrowedBookRepository BorrowedBookRepository { get; }
     }
 }

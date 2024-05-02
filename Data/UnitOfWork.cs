@@ -34,6 +34,49 @@ namespace Data
         }
         #endregion
 
+        #region Books
+        private IBookRepository bookRepository;
+        public IBookRepository BookRepository
+        {
+            get
+            {
+                if (bookRepository == null)
+                    bookRepository = new BookRepository(context);
+
+                return bookRepository;
+            }
+        }
+        #endregion
+
+        #region Members
+        private IMemberRepository memberRepository;
+        public IMemberRepository MemberRepository
+        {
+            get
+            {
+                if (memberRepository == null)
+                    memberRepository = new MemberRepository(context);
+
+                return memberRepository;
+            }
+        }
+        #endregion
+
+        #region BorrowedBook
+        private IBorrowedBookRepository borrowedBookRepository;
+        public IBorrowedBookRepository BorrowedBookRepository
+        {
+            get
+            {
+                if (borrowedBookRepository == null)
+                    borrowedBookRepository = new BorrowedBookRepository(context);
+
+                return borrowedBookRepository;
+            }
+        }
+        #endregion
+
+
         public IDbContextTransaction BeginTransaction()
         {
             return context.Database.BeginTransaction();

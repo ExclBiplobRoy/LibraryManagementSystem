@@ -7,27 +7,27 @@ namespace LibraryManagementSystem.Controllers
 {
     [Route(RouteConstants.BaseRoute)]
     [ApiController]
-    public class AuthorsController : ControllerBase
+    public class MembersController : ControllerBase
     {
         private readonly IUnitOfWork context;
 
-        public AuthorsController(IUnitOfWork context)
+        public MembersController(IUnitOfWork context)
         {
             this.context = context;
         }
 
         [HttpPost]
-        [Route(RouteConstants.CreateAuthor)]
-        public async Task<IActionResult> CreateAuthor(Author Author)
+        [Route(RouteConstants.CreateMember)]
+        public async Task<IActionResult> CreateMember(Member Member)
         {
             try
             {
-                Author.DateCreated = DateTime.Now;
+                Member.DateCreated = DateTime.Now;
 
-                context.AuthorRepository.Add(Author);
+                context.MemberRepository.Add(Member);
                 await context.SaveChangesAsync();
 
-                return CreatedAtAction("ReadAuthorByKey", new { key = Author.AuthorID }, Author);
+                return CreatedAtAction("ReadMemberByKey", new { key = Member.MemberID }, Member);
             }
             catch (Exception)
             {
@@ -36,14 +36,14 @@ namespace LibraryManagementSystem.Controllers
         }
 
         [HttpGet]
-        [Route(RouteConstants.RaedAuthors)]
-        public async Task<IActionResult> ReadAuthors()
+        [Route(RouteConstants.RaedMembers)]
+        public async Task<IActionResult> ReadMembers()
         {
             try
             {
-                var AuthorsInDb = await context.AuthorRepository.GetAuthors();
-                AuthorsInDb = AuthorsInDb.OrderByDescending(x => x.DateCreated);
-                return Ok(AuthorsInDb);
+                var MembersInDb = await context.MemberRepository.GetMembers();
+                MembersInDb = MembersInDb.OrderByDescending(x => x.DateCreated);
+                return Ok(MembersInDb);
             }
             catch (Exception)
             {
@@ -52,20 +52,20 @@ namespace LibraryManagementSystem.Controllers
         }
 
         [HttpGet]
-        [Route(RouteConstants.ReadAuthorByKey)]
-        public async Task<IActionResult> ReadAuthorByKey(int key)
+        [Route(RouteConstants.ReadMemberByKey)]
+        public async Task<IActionResult> ReadMemberByKey(int key)
         {
             try
             {
                 if (key < 1)
                     return StatusCode(StatusCodes.Status400BadRequest, MessageConstants.InvalidParameterError);
 
-                var AuthorsInDb = await context.AuthorRepository.GetAuthorByKey(key);
+                var MembersInDb = await context.MemberRepository.GetMemberByKey(key);
 
-                if (AuthorsInDb == null)
+                if (MembersInDb == null)
                     return StatusCode(StatusCodes.Status404NotFound, MessageConstants.NoMatchFoundError);
 
-                return Ok(AuthorsInDb);
+                return Ok(MembersInDb);
             }
             catch (Exception)
             {
@@ -74,17 +74,17 @@ namespace LibraryManagementSystem.Controllers
         }
 
         [HttpPut]
-        [Route(RouteConstants.UpdateAuthor)]
-        public async Task<IActionResult> UpdateAuthor(int key, Author Author)
+        [Route(RouteConstants.UpdateMember)]
+        public async Task<IActionResult> UpdateMember(int key, Member Member)
         {
             try
             {
-                if (key != Author.AuthorID)
+                if (key != Member.MemberID)
                     return StatusCode(StatusCodes.Status404NotFound, MessageConstants.NoMatchFoundError);
 
-                Author.DateModified = DateTime.Now;
+                Member.DateModified = DateTime.Now;
 
-                context.AuthorRepository.Update(Author);
+                context.MemberRepository.Update(Member);
                 await context.SaveChangesAsync();
 
                 return StatusCode(StatusCodes.Status204NoContent);
@@ -96,17 +96,17 @@ namespace LibraryManagementSystem.Controllers
         }
 
         [HttpDelete]
-        [Route(RouteConstants.DeleteAuthor)]
-        public async Task<IActionResult> DeleteAuthor(int id)
+        [Route(RouteConstants.DeleteMember)]
+        public async Task<IActionResult> DeleteMember(int id)
         {
             try
             {
-                var authorToDelete = await context.AuthorRepository.GetByIdAsync(id);
+                var MemberToDelete = await context.MemberRepository.GetByIdAsync(id);
 
-                if (authorToDelete == null)
+                if (MemberToDelete == null)
                     return StatusCode(StatusCodes.Status404NotFound, MessageConstants.NoMatchFoundError);
 
-                context.AuthorRepository.Delete(authorToDelete);
+                context.MemberRepository.Delete(MemberToDelete);
                 await context.SaveChangesAsync();
 
                 return StatusCode(StatusCodes.Status204NoContent);

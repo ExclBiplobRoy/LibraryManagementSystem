@@ -1,5 +1,6 @@
 ﻿using Domain.Entities;
 using Infrastructure.Contracts;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Utilities;
 
@@ -7,27 +8,27 @@ namespace LibraryManagementSystem.Controllers
 {
     [Route(RouteConstants.BaseRoute)]
     [ApiController]
-    public class AuthorsController : ControllerBase
+    public class BorrowedBooksController : ControllerBase
     {
         private readonly IUnitOfWork context;
 
-        public AuthorsController(IUnitOfWork context)
+        public BorrowedBooksController(IUnitOfWork context)
         {
             this.context = context;
         }
 
         [HttpPost]
-        [Route(RouteConstants.CreateAuthor)]
-        public async Task<IActionResult> CreateAuthor(Author Author)
+        [Route(RouteConstants.CreateBorrowedBook)]
+        public async Task<IActionResult> CreateBorrowedBook(BorrowedBook BorrowedBook)
         {
             try
             {
-                Author.DateCreated = DateTime.Now;
+                BorrowedBook.DateCreated = DateTime.Now;
 
-                context.AuthorRepository.Add(Author);
+                context.BorrowedBookRepository.Add(BorrowedBook);
                 await context.SaveChangesAsync();
 
-                return CreatedAtAction("ReadAuthorByKey", new { key = Author.AuthorID }, Author);
+                return CreatedAtAction("ReadBorrowedBookByKey", new { key = BorrowedBook.BorrowID }, BorrowedBook);
             }
             catch (Exception)
             {
@@ -36,14 +37,14 @@ namespace LibraryManagementSystem.Controllers
         }
 
         [HttpGet]
-        [Route(RouteConstants.RaedAuthors)]
-        public async Task<IActionResult> ReadAuthors()
+        [Route(RouteConstants.RaedBorrowedBooks)]
+        public async Task<IActionResult> ReadBorrowedBooks()
         {
             try
             {
-                var AuthorsInDb = await context.AuthorRepository.GetAuthors();
-                AuthorsInDb = AuthorsInDb.OrderByDescending(x => x.DateCreated);
-                return Ok(AuthorsInDb);
+                var BorrowedBooksInDb = await context.BorrowedBookRepository.GetBorrowedBooks();
+                BorrowedBooksInDb = BorrowedBooksInDb.OrderByDescending(x => x.DateCreated);
+                return Ok(BorrowedBooksInDb);
             }
             catch (Exception)
             {
@@ -52,20 +53,20 @@ namespace LibraryManagementSystem.Controllers
         }
 
         [HttpGet]
-        [Route(RouteConstants.ReadAuthorByKey)]
-        public async Task<IActionResult> ReadAuthorByKey(int key)
+        [Route(RouteConstants.ReadBorrowedBookByKey)]
+        public async Task<IActionResult> ReadBorrowedBookByKey(int key)
         {
             try
             {
                 if (key < 1)
                     return StatusCode(StatusCodes.Status400BadRequest, MessageConstants.InvalidParameterError);
 
-                var AuthorsInDb = await context.AuthorRepository.GetAuthorByKey(key);
+                var BorrowedBooksInDb = await context.BorrowedBookRepository.GetBorrowedBookByKey(key);
 
-                if (AuthorsInDb == null)
+                if (BorrowedBooksInDb == null)
                     return StatusCode(StatusCodes.Status404NotFound, MessageConstants.NoMatchFoundError);
 
-                return Ok(AuthorsInDb);
+                return Ok(BorrowedBooksInDb);
             }
             catch (Exception)
             {
@@ -74,17 +75,17 @@ namespace LibraryManagementSystem.Controllers
         }
 
         [HttpPut]
-        [Route(RouteConstants.UpdateAuthor)]
-        public async Task<IActionResult> UpdateAuthor(int key, Author Author)
+        [Route(RouteConstants.UpdateBorrowedBook)]
+        public async Task<IActionResult> UpdateBorrowedBook(int key, BorrowedBook BorrowedBook)
         {
             try
             {
-                if (key != Author.AuthorID)
+                if (key != BorrowedBook.BorrowID)
                     return StatusCode(StatusCodes.Status404NotFound, MessageConstants.NoMatchFoundError);
 
-                Author.DateModified = DateTime.Now;
+                BorrowedBook.DateModified = DateTime.Now;
 
-                context.AuthorRepository.Update(Author);
+                context.BorrowedBookRepository.Update(BorrowedBook);
                 await context.SaveChangesAsync();
 
                 return StatusCode(StatusCodes.Status204NoContent);
@@ -96,17 +97,17 @@ namespace LibraryManagementSystem.Controllers
         }
 
         [HttpDelete]
-        [Route(RouteConstants.DeleteAuthor)]
-        public async Task<IActionResult> DeleteAuthor(int id)
+        [Route(RouteConstants.DeleteBorrowedBook)]
+        public async Task<IActionResult> DeleteBorrowedBook(int id)
         {
             try
             {
-                var authorToDelete = await context.AuthorRepository.GetByIdAsync(id);
+                var BorrowedBookToDelete = await context.BorrowedBookRepository.GetByIdAsync(id);
 
-                if (authorToDelete == null)
+                if (BorrowedBookToDelete == null)
                     return StatusCode(StatusCodes.Status404NotFound, MessageConstants.NoMatchFoundError);
 
-                context.AuthorRepository.Delete(authorToDelete);
+                context.BorrowedBookRepository.Delete(BorrowedBookToDelete);
                 await context.SaveChangesAsync();
 
                 return StatusCode(StatusCodes.Status204NoContent);

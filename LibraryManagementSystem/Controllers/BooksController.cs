@@ -7,27 +7,27 @@ namespace LibraryManagementSystem.Controllers
 {
     [Route(RouteConstants.BaseRoute)]
     [ApiController]
-    public class AuthorsController : ControllerBase
+    public class BooksController : ControllerBase
     {
         private readonly IUnitOfWork context;
 
-        public AuthorsController(IUnitOfWork context)
+        public BooksController(IUnitOfWork context)
         {
             this.context = context;
         }
 
         [HttpPost]
-        [Route(RouteConstants.CreateAuthor)]
-        public async Task<IActionResult> CreateAuthor(Author Author)
+        [Route(RouteConstants.CreateBook)]
+        public async Task<IActionResult> CreateBook(Book Book)
         {
             try
             {
-                Author.DateCreated = DateTime.Now;
+                Book.DateCreated = DateTime.Now;
 
-                context.AuthorRepository.Add(Author);
+                context.BookRepository.Add(Book);
                 await context.SaveChangesAsync();
 
-                return CreatedAtAction("ReadAuthorByKey", new { key = Author.AuthorID }, Author);
+                return CreatedAtAction("ReadBookByKey", new { key = Book.BookID }, Book);
             }
             catch (Exception)
             {
@@ -36,14 +36,14 @@ namespace LibraryManagementSystem.Controllers
         }
 
         [HttpGet]
-        [Route(RouteConstants.RaedAuthors)]
-        public async Task<IActionResult> ReadAuthors()
+        [Route(RouteConstants.RaedBooks)]
+        public async Task<IActionResult> ReadBooks()
         {
             try
             {
-                var AuthorsInDb = await context.AuthorRepository.GetAuthors();
-                AuthorsInDb = AuthorsInDb.OrderByDescending(x => x.DateCreated);
-                return Ok(AuthorsInDb);
+                var BooksInDb = await context.BookRepository.GetBooks();
+                BooksInDb = BooksInDb.OrderByDescending(x => x.DateCreated);
+                return Ok(BooksInDb);
             }
             catch (Exception)
             {
@@ -52,20 +52,20 @@ namespace LibraryManagementSystem.Controllers
         }
 
         [HttpGet]
-        [Route(RouteConstants.ReadAuthorByKey)]
-        public async Task<IActionResult> ReadAuthorByKey(int key)
+        [Route(RouteConstants.ReadBookByKey)]
+        public async Task<IActionResult> ReadBookByKey(int key)
         {
             try
             {
                 if (key < 1)
                     return StatusCode(StatusCodes.Status400BadRequest, MessageConstants.InvalidParameterError);
 
-                var AuthorsInDb = await context.AuthorRepository.GetAuthorByKey(key);
+                var BooksInDb = await context.BookRepository.GetBookByKey(key);
 
-                if (AuthorsInDb == null)
+                if (BooksInDb == null)
                     return StatusCode(StatusCodes.Status404NotFound, MessageConstants.NoMatchFoundError);
 
-                return Ok(AuthorsInDb);
+                return Ok(BooksInDb);
             }
             catch (Exception)
             {
@@ -74,17 +74,17 @@ namespace LibraryManagementSystem.Controllers
         }
 
         [HttpPut]
-        [Route(RouteConstants.UpdateAuthor)]
-        public async Task<IActionResult> UpdateAuthor(int key, Author Author)
+        [Route(RouteConstants.UpdateBook)]
+        public async Task<IActionResult> UpdateBook(int key, Book Book)
         {
             try
             {
-                if (key != Author.AuthorID)
+                if (key != Book.BookID)
                     return StatusCode(StatusCodes.Status404NotFound, MessageConstants.NoMatchFoundError);
 
-                Author.DateModified = DateTime.Now;
+                Book.DateModified = DateTime.Now;
 
-                context.AuthorRepository.Update(Author);
+                context.BookRepository.Update(Book);
                 await context.SaveChangesAsync();
 
                 return StatusCode(StatusCodes.Status204NoContent);
@@ -96,17 +96,17 @@ namespace LibraryManagementSystem.Controllers
         }
 
         [HttpDelete]
-        [Route(RouteConstants.DeleteAuthor)]
-        public async Task<IActionResult> DeleteAuthor(int id)
+        [Route(RouteConstants.DeleteBook)]
+        public async Task<IActionResult> DeleteBook(int id)
         {
             try
             {
-                var authorToDelete = await context.AuthorRepository.GetByIdAsync(id);
+                var BookToDelete = await context.BookRepository.GetByIdAsync(id);
 
-                if (authorToDelete == null)
+                if (BookToDelete == null)
                     return StatusCode(StatusCodes.Status404NotFound, MessageConstants.NoMatchFoundError);
 
-                context.AuthorRepository.Delete(authorToDelete);
+                context.BookRepository.Delete(BookToDelete);
                 await context.SaveChangesAsync();
 
                 return StatusCode(StatusCodes.Status204NoContent);

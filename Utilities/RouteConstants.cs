@@ -51,5 +51,17 @@
 
         public const string DeleteBorrowedBook = "borrowed-book/{key}";
         #endregion
+
+        #region Admin
+        public const string CreateAdmin = "admin";
+
+        public const string RaedAdmins = "admin";
+
+        public const string ReadAdminByKey = "admin/key/{key}";
+
+        public const string UpdateAdmin = "admin/{key}";
+
+        public const string DeleteAdmin = "admin/{key}";
+        #endregion
     }
 }

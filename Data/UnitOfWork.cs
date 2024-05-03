@@ -76,6 +76,20 @@ namespace Data
         }
         #endregion
 
+        #region Admins
+        private IAdminRepository adminRepository;
+        public IAdminRepository AdminRepository
+        {
+            get
+            {
+                if (adminRepository == null)
+                    adminRepository = new AdminRepository(context);
+
+                return adminRepository;
+            }
+        }
+        #endregion
+
 
         public IDbContextTransaction BeginTransaction()
         {

@@ -22,5 +22,7 @@ namespace Infrastructure.Contracts
         IMemberRepository MemberRepository { get; }
 
         IBorrowedBookRepository BorrowedBookRepository { get; }
+
+        IAdminRepository AdminRepository { get; }
     }
 }

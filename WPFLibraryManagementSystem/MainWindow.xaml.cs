@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPFLibraryManagementSystem.View;
 
 namespace WPFLibraryManagementSystem
 {
@@ -23,6 +24,13 @@ namespace WPFLibraryManagementSystem
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            AdminTest adminTest = new AdminTest();
+            adminTest.Show();
+            this.Close();
         }
     }
 }

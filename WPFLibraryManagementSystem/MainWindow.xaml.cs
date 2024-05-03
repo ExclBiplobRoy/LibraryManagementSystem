@@ -1,11 +1,8 @@
-﻿using System.Windows;
-using WPFLibraryManagementSystem.View;
+﻿using Domain.Entities;
+using System.Windows;
 
 namespace WPFLibraryManagementSystem
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -13,11 +10,16 @@ namespace WPFLibraryManagementSystem
             InitializeComponent();
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        private void AdminMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            AdminTest adminTest = new AdminTest();
-            adminTest.Show();
-            this.Close();
+            View.Admin admin = new ();
+            admin.ShowDialog();
+        }
+
+        private void AuthorMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            View.Author author = new ();
+            author.ShowDialog();
         }
     }
 }

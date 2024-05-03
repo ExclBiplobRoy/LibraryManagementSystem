@@ -7,7 +7,7 @@
         #region Author
         public const string CreateAuthor = "author";
 
-        public const string RaedAuthors = "authors";
+        public const string ReadAuthors = "authors";
 
         public const string ReadAuthorByKey = "author/key/{key}";
 

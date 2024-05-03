@@ -6,7 +6,7 @@ using WPFLibraryManagementSystem.Services;
 
 namespace WPFLibraryManagementSystem.View
 {
-    public partial class AdminTest : Window
+    public partial class Admin : Window
     {
         private readonly AdminService _adminService;
 
@@ -14,7 +14,7 @@ namespace WPFLibraryManagementSystem.View
 
         public string FullName;
 
-        public AdminTest()
+        public Admin()
         {
             InitializeComponent();
             _adminService = new AdminService();

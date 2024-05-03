@@ -1,0 +1,48 @@
+﻿<Window x:Class="WPFLibraryManagementSystem.View.Author"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFLibraryManagementSystem.View"
+        mc:Ignorable="d"
+        Title="Author" WindowState="Maximized" Height="450" Width="800">
+    <Grid>
+        <!-- Left side: Create Author -->
+        <Grid Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Create Author Fields -->
+            <StackPanel Grid.Column="0" Margin="20">
+                <TextBlock Text="Author Form" FontWeight="Bold" HorizontalAlignment="Center" FontSize="20" />
+                <StackPanel Margin="0,0,0,5">
+                    <Label Content="Author Name" Margin="40,0,0,0"/>
+                    <TextBox x:Name="AuthorNameTextBox" Height="25" Margin="40,0,0,0" />
+                </StackPanel>
+                <StackPanel Margin="0,5,0,5">
+                    <Label Content="Author Biography" Margin="40,0,0,0"/>
+                    <TextBox x:Name="AuthorBioTextBox" Height="50" Margin="40,0,0,0" TextWrapping="Wrap" AcceptsReturn="True" />
+                </StackPanel>
+                <Button x:Name="btnCreateAuthor" Content="Create" Click="CreateAuthorButton_Click" Width="120" Height="20" Margin="0,10,0,10" />
+                <Button Content="Delete" x:Name="btnDeleteAuthor" Click="btnDeleteAuthor_Click" Width="120" Height="20" Margin="0,0,0,10" Foreground="#FFD62020" FontWeight="Bold"/>
+
+            </StackPanel>
+
+            <!-- Right side: List of Existing Authors -->
+            <StackPanel Grid.Column="1" Margin="20">
+                <TextBlock Text="Authors" FontWeight="Bold" HorizontalAlignment="Center" FontSize="20" Margin="0,0,0,10"/>
+                <ListView x:Name="AuthorList" BorderThickness="0" SelectionChanged="AuthorList_SelectionChanged" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <ListView.View>
+                        <GridView >
+                            <GridViewColumn Header="Author Name" Width="150" DisplayMemberBinding="{Binding AuthorName}" />
+                            <GridViewColumn Header="Author Biography" Width="200" DisplayMemberBinding="{Binding AuthorBio}" />
+                            <GridViewColumn Header="Record Date" Width="200" DisplayMemberBinding="{Binding DateCreated}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

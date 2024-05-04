@@ -2,6 +2,7 @@
 using Infrastructure.Contracts;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Utilities;
 
 namespace LibraryManagementSystem.Controllers
@@ -37,12 +38,20 @@ namespace LibraryManagementSystem.Controllers
         }
 
         [HttpGet]
-        [Route(RouteConstants.RaedBorrowedBooks)]
+        [Route(RouteConstants.ReadBorrowedBooks)]
         public async Task<IActionResult> ReadBorrowedBooks()
         {
             try
             {
                 var BorrowedBooksInDb = await context.BorrowedBookRepository.GetBorrowedBooks();
+
+                foreach (var item in BorrowedBooksInDb)
+                {
+                    item.Book = await context.BookRepository.GetBookByKey(item.BookID);
+                    item.Member = await context.MemberRepository.GetMemberByKey(item.MemberID);
+                    item.Member.FullName = item.Member.FirstName + " " + item.Member.LastName;
+                }
+
                 BorrowedBooksInDb = BorrowedBooksInDb.OrderByDescending(x => x.DateCreated);
                 return Ok(BorrowedBooksInDb);
             }

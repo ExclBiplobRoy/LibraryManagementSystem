@@ -36,5 +36,12 @@ namespace WPFLibraryManagementSystem
             member.ShowDialog();
             this.Close();
         }
+
+        private void BorrowedMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            View.BorrowedBook borrowedbook = new();
+            borrowedbook.ShowDialog();
+            this.Close();
+        }
     }
 }

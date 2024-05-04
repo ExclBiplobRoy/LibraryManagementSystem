@@ -43,7 +43,7 @@
         #region Borrowed
         public const string CreateBorrowedBook = "borrowed-book";
 
-        public const string RaedBorrowedBooks = "borrowed-books";
+        public const string ReadBorrowedBooks = "borrowed-books";
 
         public const string ReadBorrowedBookByKey = "borrowed-book/key/{key}";
 

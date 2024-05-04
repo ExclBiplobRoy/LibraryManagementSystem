@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Entities
 {
@@ -32,5 +33,8 @@ namespace Domain.Entities
         public string Email { get; set; }
 
         public virtual IEnumerable<BorrowedBook>? BorrowedBooks { get; set; }
+
+        [NotMapped]
+        public string? FullName { get; set; }
     }
 }

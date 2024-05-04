@@ -43,5 +43,15 @@ namespace WPFLibraryManagementSystem
             borrowedbook.ShowDialog();
             this.Close();
         }
+
+        private void BookDetailsMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MembersDetailsMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

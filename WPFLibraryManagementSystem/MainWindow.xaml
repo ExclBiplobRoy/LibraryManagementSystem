@@ -16,6 +16,8 @@
             </MenuItem>
             <MenuItem Header="_Books Borrowed">
                 <MenuItem Header="_Borrowed Book" Click="BorrowedMenuItem_Click"/>
+                <MenuItem Header="BooksDetails" Click="BookDetailsMenuItem_Click"/>
+                <MenuItem Header="MembersDetails" Click="MembersDetailsMenuItem_Click"/>
             </MenuItem>
         </Menu>
     </Grid>

@@ -19,6 +19,7 @@
                 <MenuItem Header="BooksDetails" Click="BookDetailsMenuItem_Click"/>
                 <MenuItem Header="MembersDetails" Click="MembersDetailsMenuItem_Click"/>
             </MenuItem>
+            <MenuItem Header="Logout" Click="LogoutMenuItem_Click" Foreground="#FFE82F2F"/>
         </Menu>
     </Grid>
 </Window>

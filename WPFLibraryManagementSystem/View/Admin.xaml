@@ -39,8 +39,7 @@
                 </StackPanel>
                 <Button x:Name="btnCreateAdmin" Content="Create" Click="CreateAdminButton_Click" Width="120" Height="20" Margin="0,0,0,10" />
                 <Button Content="Delete" x:Name="btnDelete" Click="btnDelete_Click" Width="120" Height="20" Margin="0,0,0,10" Foreground="#FFD62020" FontWeight="Bold"/>
-
-            </StackPanel>
+                <Button Content="Home" x:Name="btnHome" Click="btnHome_Click" Width="120" Height="20" Margin="0,0,0,10" Foreground="#FFE6EDEA" Background="#FF31C880" FontWeight="Bold"/></StackPanel>
 
             <!-- Right side: List of Existing Admins -->
             <StackPanel Grid.Column="1" Margin="20">

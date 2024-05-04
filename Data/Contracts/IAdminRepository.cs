@@ -6,6 +6,8 @@ namespace Data.Contracts
     {
         public Task<Admin> GetAdminByKey(int key);
 
+        public Task<Admin> GetAdminByEmail(string key);
+
         public Task<IEnumerable<Admin>> GetAdmins();
     }
 }

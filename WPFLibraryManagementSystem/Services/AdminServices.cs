@@ -1,5 +1,4 @@
-﻿using Domain.Entities;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -23,13 +22,29 @@ namespace WPFLibraryManagementSystem.Services
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        public async Task<List<Admin>> GetAdminsAsync()
+        public async Task<Domain.Entities.Admin> AuthenticateAsync(string email, string password)
+        {
+            try
+            {
+                string requestRoute = $"{BaseUrl}{RouteConstants.BaseRoute}/{RouteConstants.AdminLogin.Replace("{key}", email + "," + password)}";
+                var response = await _client.GetAsync(requestRoute);
+                response.EnsureSuccessStatusCode();
+                var content = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<Domain.Entities.Admin>(content);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"An error occurred while authenticating: {ex.Message}");
+            }
+        }
+
+        public async Task<List<Domain.Entities.Admin>> GetAdminsAsync()
         {
             string RequestRoute = $"{BaseUrl}{RouteConstants.BaseRoute}/{RouteConstants.RaedAdmins}";
             var response = await _client.GetAsync(RequestRoute);
             response.EnsureSuccessStatusCode();
             var content = await response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<List<Admin>>(content);
+            return JsonConvert.DeserializeObject<List<Domain.Entities.Admin>>(content);
         }
 
         public async Task CreateAdminAsync(Domain.Entities.Admin admin)
@@ -79,7 +94,5 @@ namespace WPFLibraryManagementSystem.Services
                 throw;
             }
         }
-
-
     }
 }

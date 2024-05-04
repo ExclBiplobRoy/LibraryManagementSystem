@@ -22,6 +22,23 @@ namespace Data.Repositories
             }
         }
 
+        async Task<Admin> IAdminRepository.GetAdminByEmail(string key)
+        {
+            string[] EmailPass = key.Split(',');
+            try
+            {
+                var admin = await FirstOrDefaultAsync(b => b.Email == EmailPass[0] && b.Password == EmailPass[1]);
+                if (admin != null)
+                    return admin;
+                else
+                    return new Admin();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         async Task<IEnumerable<Admin>> IAdminRepository.GetAdmins()
         {
             try

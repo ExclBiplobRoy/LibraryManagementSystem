@@ -53,6 +53,8 @@
         #endregion
 
         #region Admin
+        public const string AdminLogin = "admin-login/admin/{key}";
+
         public const string CreateAdmin = "admin";
 
         public const string RaedAdmins = "admin";

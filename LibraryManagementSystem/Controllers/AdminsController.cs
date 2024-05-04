@@ -1,6 +1,7 @@
 ﻿using Domain.Entities;
 using Infrastructure.Contracts;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Utilities;
 
 namespace LibraryManagementSystem.Controllers
@@ -14,6 +15,28 @@ namespace LibraryManagementSystem.Controllers
         public AdminsController(IUnitOfWork context)
         {
             this.context = context;
+        }
+
+        [HttpGet]
+        [Route(RouteConstants.AdminLogin)]
+        public async Task<IActionResult> ReadAdminByKey(string key)
+        {
+            try
+            {
+                if (key.Length < 1)
+                    return StatusCode(StatusCodes.Status400BadRequest, MessageConstants.InvalidParameterError);
+
+                var AdminsInDb = await context.AdminRepository.GetAdminByEmail(key);
+
+                if (AdminsInDb == null)
+                    return StatusCode(StatusCodes.Status404NotFound, MessageConstants.NoMatchFoundError);
+
+                return Ok(AdminsInDb);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, MessageConstants.GenericError);
+            }
         }
 
         [HttpPost]

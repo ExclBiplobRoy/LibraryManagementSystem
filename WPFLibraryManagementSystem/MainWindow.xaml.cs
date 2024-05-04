@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using WPFLibraryManagementSystem.View;
 
 namespace WPFLibraryManagementSystem
 {
@@ -52,6 +53,13 @@ namespace WPFLibraryManagementSystem
         private void MembersDetailsMenuItem_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void LogoutMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            Login login = new Login();
+            login.Show();
+            this.Close();
         }
     }
 }

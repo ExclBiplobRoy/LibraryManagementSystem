@@ -5,10 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFLibraryManagementSystem"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" WindowState="Maximized">
     <Grid>
         <Menu>
-            <MenuItem Header="_Navigate">
+            <MenuItem Header="_Administrative">
+                <MenuItem Header="Admin" Click="AdminMenuItem_Click"/>
+                <MenuItem Header="_Author" Click="AuthorMenuItem_Click"/>
+                <MenuItem Header="_Book" Click="BookMenuItem_Click"/>
+            </MenuItem>
+            <MenuItem Header="_Books">
                 <MenuItem Header="_Admin" Click="AdminMenuItem_Click"/>
                 <MenuItem Header="_Author" Click="AuthorMenuItem_Click"/>
             </MenuItem>

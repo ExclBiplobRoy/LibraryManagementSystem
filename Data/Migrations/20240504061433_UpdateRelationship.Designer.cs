@@ -4,6 +4,7 @@ using Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20240504061433_UpdateRelationship")]
+    partial class UpdateRelationship
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -299,7 +301,7 @@ namespace Data.Migrations
                             FirstName = "John",
                             LastName = "Doe",
                             PhoneNumber = "1234567890",
-                            RegistrationDate = new DateTime(2024, 5, 4, 12, 48, 46, 45, DateTimeKind.Local).AddTicks(308)
+                            RegistrationDate = new DateTime(2024, 5, 4, 12, 14, 33, 283, DateTimeKind.Local).AddTicks(5181)
                         },
                         new
                         {
@@ -308,7 +310,7 @@ namespace Data.Migrations
                             FirstName = "Jane",
                             LastName = "Smith",
                             PhoneNumber = "9876543210",
-                            RegistrationDate = new DateTime(2024, 5, 4, 12, 48, 46, 45, DateTimeKind.Local).AddTicks(317)
+                            RegistrationDate = new DateTime(2024, 5, 4, 12, 14, 33, 283, DateTimeKind.Local).AddTicks(5190)
                         });
                 });
 

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240501182140_InitialCreate")]
+    [Migration("20240504061104_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,6 +23,64 @@ namespace Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("Domain.Entities.Admin", b =>
+                {
+                    b.Property<int>("AdminID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AdminID"), 1L, 1);
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .HasColumnType("smalldatetime");
+
+                    b.Property<DateTime?>("DateModified")
+                        .HasColumnType("smalldatetime");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("Level")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("SurName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("AdminID");
+
+                    b.ToTable("Admins");
+
+                    b.HasData(
+                        new
+                        {
+                            AdminID = 1,
+                            Email = "admin@gmail.com",
+                            FirstName = "User",
+                            Level = 5,
+                            Password = "12345",
+                            SurName = "Admin"
+                        });
+                });
 
             modelBuilder.Entity("Domain.Entities.Author", b =>
                 {
@@ -56,6 +114,20 @@ namespace Data.Migrations
                     b.HasKey("AuthorID");
 
                     b.ToTable("Authors");
+
+                    b.HasData(
+                        new
+                        {
+                            AuthorID = 1,
+                            AuthorBio = "British author best known for writing the Harry Potter series.",
+                            AuthorName = "J.K. Rowling"
+                        },
+                        new
+                        {
+                            AuthorID = 2,
+                            AuthorBio = "American author known for his horror, supernatural fiction, and suspense novels.",
+                            AuthorName = "Stephen King"
+                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.Book", b =>
@@ -105,6 +177,28 @@ namespace Data.Migrations
                     b.HasIndex("AuthorID");
 
                     b.ToTable("Books");
+
+                    b.HasData(
+                        new
+                        {
+                            BookID = 1,
+                            AuthorID = 1,
+                            AvailableCopies = 10,
+                            ISBN = "9780747532743",
+                            PublishedDate = new DateTime(1997, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Harry Potter and the Philosopher's Stone",
+                            TotalCopies = 10
+                        },
+                        new
+                        {
+                            BookID = 2,
+                            AuthorID = 2,
+                            AvailableCopies = 8,
+                            ISBN = "9780451169518",
+                            PublishedDate = new DateTime(1986, 9, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "It",
+                            TotalCopies = 8
+                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.BorrowedBook", b =>
@@ -198,6 +292,26 @@ namespace Data.Migrations
                     b.HasKey("MemberID");
 
                     b.ToTable("Members");
+
+                    b.HasData(
+                        new
+                        {
+                            MemberID = 1,
+                            Email = "john.doe@example.com",
+                            FirstName = "John",
+                            LastName = "Doe",
+                            PhoneNumber = "1234567890",
+                            RegistrationDate = new DateTime(2024, 5, 4, 12, 11, 4, 499, DateTimeKind.Local).AddTicks(3626)
+                        },
+                        new
+                        {
+                            MemberID = 2,
+                            Email = "jane.smith@example.com",
+                            FirstName = "Jane",
+                            LastName = "Smith",
+                            PhoneNumber = "9876543210",
+                            RegistrationDate = new DateTime(2024, 5, 4, 12, 11, 4, 499, DateTimeKind.Local).AddTicks(3634)
+                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.Book", b =>

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240503024749_AddAdminTable")]
-    partial class AddAdminTable
+    [Migration("20240504064531_UpdateCollection")]
+    partial class UpdateCollection
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -301,7 +301,7 @@ namespace Data.Migrations
                             FirstName = "John",
                             LastName = "Doe",
                             PhoneNumber = "1234567890",
-                            RegistrationDate = new DateTime(2024, 5, 3, 8, 47, 49, 573, DateTimeKind.Local).AddTicks(5802)
+                            RegistrationDate = new DateTime(2024, 5, 4, 12, 45, 30, 567, DateTimeKind.Local).AddTicks(4165)
                         },
                         new
                         {
@@ -310,7 +310,7 @@ namespace Data.Migrations
                             FirstName = "Jane",
                             LastName = "Smith",
                             PhoneNumber = "9876543210",
-                            RegistrationDate = new DateTime(2024, 5, 3, 8, 47, 49, 573, DateTimeKind.Local).AddTicks(5811)
+                            RegistrationDate = new DateTime(2024, 5, 4, 12, 45, 30, 567, DateTimeKind.Local).AddTicks(4177)
                         });
                 });
 

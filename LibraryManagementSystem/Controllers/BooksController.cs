@@ -1,6 +1,7 @@
 ﻿using Domain.Entities;
 using Infrastructure.Contracts;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Utilities;
 
 namespace LibraryManagementSystem.Controllers
@@ -36,12 +37,17 @@ namespace LibraryManagementSystem.Controllers
         }
 
         [HttpGet]
-        [Route(RouteConstants.RaedBooks)]
+        [Route(RouteConstants.ReadBooks)]
         public async Task<IActionResult> ReadBooks()
         {
             try
             {
                 var BooksInDb = await context.BookRepository.GetBooks();
+                foreach (var Book in BooksInDb) 
+                {
+                    Book.Author = await context.AuthorRepository.GetAuthorByKey(Book.AuthorID);
+                }
+
                 BooksInDb = BooksInDb.OrderByDescending(x => x.DateCreated);
                 return Ok(BooksInDb);
             }

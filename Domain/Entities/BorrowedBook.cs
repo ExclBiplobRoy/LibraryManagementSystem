@@ -17,7 +17,7 @@ namespace Domain.Entities
         public int MemberID { get; set; }
 
         [ForeignKey("MemberID")]
-        public virtual Member Member { get; set; }
+        public virtual Member? Member { get; set; }
 
         [DataType(DataType.Date)]
         [Display(Name = "Return Date")]
@@ -27,7 +27,7 @@ namespace Domain.Entities
         public int BookID { get; set; }
 
         [ForeignKey("BookID")]
-        public virtual Book Book { get; set; }
+        public virtual Book? Book { get; set; }
 
         [Required]
         [StringLength(20)]

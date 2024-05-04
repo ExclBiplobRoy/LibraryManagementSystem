@@ -19,7 +19,7 @@
         #region Book
         public const string CreateBook = "book";
 
-        public const string RaedBooks = "books";
+        public const string ReadBooks = "books";
 
         public const string ReadBookByKey = "book/key/{key}";
 

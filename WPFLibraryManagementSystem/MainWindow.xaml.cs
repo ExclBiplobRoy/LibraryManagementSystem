@@ -29,5 +29,12 @@ namespace WPFLibraryManagementSystem
             book.ShowDialog();
             this.Close();
         }
+
+        private void MemberMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            View.Member member = new();
+            member.ShowDialog();
+            this.Close();
+        }
     }
 }

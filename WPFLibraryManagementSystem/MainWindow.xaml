@@ -12,6 +12,7 @@
                 <MenuItem Header="Admin" Click="AdminMenuItem_Click"/>
                 <MenuItem Header="_Author" Click="AuthorMenuItem_Click"/>
                 <MenuItem Header="_Book" Click="BookMenuItem_Click"/>
+                <MenuItem Header="_Member" Click="MemberMenuItem_Click"/>
             </MenuItem>
             <MenuItem Header="_Books">
                 <MenuItem Header="_Admin" Click="AdminMenuItem_Click"/>

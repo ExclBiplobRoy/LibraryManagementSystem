@@ -31,7 +31,7 @@
         #region Member
         public const string CreateMember = "member";
 
-        public const string RaedMembers = "members";
+        public const string ReadMembers = "members";
 
         public const string ReadMemberByKey = "member/key/{key}";
 

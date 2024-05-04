@@ -36,7 +36,7 @@ namespace LibraryManagementSystem.Controllers
         }
 
         [HttpGet]
-        [Route(RouteConstants.RaedMembers)]
+        [Route(RouteConstants.ReadMembers)]
         public async Task<IActionResult> ReadMembers()
         {
             try

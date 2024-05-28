@@ -34,13 +34,22 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Border BorderBrush="{x:Null}" BorderThickness="1">
+                        <ControlTemplate.Resources>
+                            <Storyboard x:Key="MouseOverStoryboard">
+                                <ColorAnimation Duration="0:0:0.2" To="#FF2DAAC0" Storyboard.TargetName="rectangle" Storyboard.TargetProperty="(Rectangle.Fill).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)" />
+                            </Storyboard>
+                            <Storyboard x:Key="PressedStoryboard">
+                                <ColorAnimation Duration="0:0:0.8" To="#FF2DAAC0" Storyboard.TargetName="rectangle" Storyboard.TargetProperty="(Rectangle.Fill).(RadialGradientBrush.GradientStops)[1].(GradientStop.Color)" />
+                                <DoubleAnimation Duration="0:0:0.8" To="3" Storyboard.TargetName="rectangle" Storyboard.TargetProperty="StrokeThickness"/>
+                            </Storyboard>
+                        </ControlTemplate.Resources>
+                        <Border BorderBrush="{x:Null}" BorderThickness="1" Width="100">
                             <Grid>
                                 <Rectangle x:Name="rectangle" Height="28" Stroke="#FF89A3E8" RadiusX="11.3" RadiusY="11.3" StrokeThickness="0.5" OpacityMask="#CC160FA1">
                                     <Rectangle.Fill>
                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                            <GradientStop Color="#FFDBE9EB"/>
-                                            <GradientStop Color="#FF2DAAC0" Offset="1"/>
+                                            <GradientStop Color="#FFEAF0F1"/>
+                                            <GradientStop Color="#FF2DAAC0" Offset="0.995"/>
                                         </LinearGradientBrush>
                                     </Rectangle.Fill>
                                 </Rectangle>
@@ -49,8 +58,27 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsDefaulted" Value="true"/>
-                            <Trigger Property="IsMouseOver" Value="true"/>
-                            <Trigger Property="IsPressed" Value="true"/>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter TargetName="rectangle" Property="Fill">
+                                    <Setter.Value>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FFEAF0F1" Offset="0.75"/>
+                                            <GradientStop Color="#FF2DAAC0" />
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter TargetName="rectangle" Property="Fill">
+                                    <Setter.Value>
+                                        <RadialGradientBrush RadiusX="0.5" RadiusY="0.5" Center="0.5,0.5" GradientOrigin="0.5,0.5">
+                                            <GradientStop Color="#FFEAF0F1" Offset="1"/>
+                                            <GradientStop Color="#FF2DAAC0" Offset="0"/>
+                                        </RadialGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter TargetName="rectangle" Property="StrokeThickness" Value="3"/>
+                            </Trigger>
                             <Trigger Property="IsEnabled" Value="false"/>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -58,5 +86,5 @@
             </Setter>
         </Style>
     </Application.Resources>
-    
+
 </Application>

@@ -83,7 +83,7 @@
                 </StackPanel>
                 <Button x:Name="btnCreateAdmin" Content="Create" Click="CreateAdminButton_Click" Width="120" Height="20" Margin="0,0,0,10" />
                 <Button Content="Delete" x:Name="btnDelete" Click="btnDelete_Click" Width="120" Height="20" Margin="0,0,0,10" Foreground="#FFD62020" FontWeight="Bold"/>
-                <Button Content="Home" Style="{DynamicResource ButtonStyle2}" x:Name="btnHome" Click="btnHome_Click" Width="120" Height="35" Margin="0,0,0,10" Foreground="#FFE6EDEA" Background="#FF31C880" FontWeight="Bold"/>
+                <Button Width="100" Style="{DynamicResource ButtonStyle2}" Click="btnHome_Click"/>
             </StackPanel>
 
             <!-- Right side: List of Existing Admins -->

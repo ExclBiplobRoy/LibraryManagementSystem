@@ -48,6 +48,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Storyboard x:Key="Storyboard1"/>
     </Window.Resources>
     <Grid>
         <!-- Left side: Create Admin -->
@@ -82,8 +83,7 @@
                 </StackPanel>
                 <Button x:Name="btnCreateAdmin" Content="Create" Click="CreateAdminButton_Click" Width="120" Height="20" Margin="0,0,0,10" />
                 <Button Content="Delete" x:Name="btnDelete" Click="btnDelete_Click" Width="120" Height="20" Margin="0,0,0,10" Foreground="#FFD62020" FontWeight="Bold"/>
-                <Button Content="Home" x:Name="btnHome" Click="btnHome_Click" Width="120" Height="20" Margin="0,0,0,10" Foreground="#FFE6EDEA" Background="#FF31C880" FontWeight="Bold"/>
-                <Button Content="Button" Height="20" Width="62"/>
+                <Button Content="Home" Style="{DynamicResource ButtonStyle2}" x:Name="btnHome" Click="btnHome_Click" Width="120" Height="35" Margin="0,0,0,10" Foreground="#FFE6EDEA" Background="#FF31C880" FontWeight="Bold"/>
             </StackPanel>
 
             <!-- Right side: List of Existing Admins -->
@@ -95,11 +95,7 @@
                             <GridViewColumn Header="Name" Width="150">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock>
-                                            <Run Text="{Binding FirstName}" />
-                                            <Run Text=""/>
-                                            <Run Text="{Binding SurName}" />
-                                        </TextBlock>
+                                        <TextBlock><Run Text="{Binding FirstName}" /><Run Text=" "/><Run Text=""/><Run Text=" "/><Run Text="{Binding SurName}" /></TextBlock>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>

@@ -42,7 +42,7 @@
                     <ComboBox x:Name="AuthorComboBox" Margin="40,0,0,0" DisplayMemberPath="AuthorName" SelectedValuePath="AuthorID"/>
                 </StackPanel>
                 <Button x:Name="btnCreateBook" Content="Create" Click="CreateBookButton_Click" Width="120" Height="20" Margin="0,10,0,10" />
-                <Button Content="Delete" x:Name="btnDeleteBook" Click="btnDeleteBook_Click" Width="120" Height="20" Margin="0,0,0,10" Foreground="#FFD62020" FontWeight="Bold"/>
+                <Button Click="btnDelete_Click" Style="{DynamicResource ButtonStyleDelete}" Width="100" />
                 <Button Click="btnHome_Click" Style="{DynamicResource ButtonStyle2}"/>
             </StackPanel>
 

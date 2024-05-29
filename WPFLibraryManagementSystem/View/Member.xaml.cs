@@ -91,7 +91,7 @@ namespace WPFLibraryManagementSystem.View
             }
         }
 
-        private async void btnDeleteMember_Click(object sender, RoutedEventArgs e)
+        private async void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             try
             {

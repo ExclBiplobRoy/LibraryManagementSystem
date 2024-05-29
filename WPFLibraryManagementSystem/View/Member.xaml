@@ -33,9 +33,18 @@
                     <Label Content="Email" Margin="40,0,0,0"/>
                     <TextBox x:Name="EmailTextBox" Height="25" Margin="40,0,0,0" />
                 </StackPanel>
-                <Button x:Name="btnCreateMember" Content="Create" Click="CreateMemberButton_Click" Width="120" Height="20" Margin="0,10,0,10" />
-                <Button Click="btnDelete_Click" Style="{DynamicResource ButtonStyleDelete}" Width="100" />
-                <Button Click="btnHome_Click" Style="{DynamicResource ButtonStyle2}"/>
+                <StackPanel VerticalAlignment="Center" MaxWidth="350">
+                    <Grid Margin="20,0,20,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name="btnCreateMember" Grid.Column = "1" Click="CreateMemberButton_Click" Style="{DynamicResource ButtonStyleCreate}" Width="100"/>
+                        <Button Grid.Column = "2" Click="btnDelete_Click" Style="{DynamicResource ButtonStyleDelete}" Width="100" />
+                        <Button Grid.Column = "0" Width="100" Style="{DynamicResource ButtonStyle2}" Click="btnHome_Click"/>
+                    </Grid>
+                </StackPanel>
             </StackPanel>
 
             <!-- Right side: List of Existing Members -->

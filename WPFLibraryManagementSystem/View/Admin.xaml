@@ -88,7 +88,7 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Button x:Name="btnCreateAdmin" Grid.Column = "1" Click="CreateAdminButton_Click" Style="{DynamicResource ButtonStyleCreate}" Width="100"/>
+                        <Button Content="Create" x:Name="btnCreateAdmin" Grid.Column = "1" Click="CreateAdminButton_Click" Style="{DynamicResource ButtonStyleCreate}" Width="100"/>
                         <Button Grid.Column = "2" Click="btnDelete_Click" Style="{DynamicResource ButtonStyleDelete}" Width="100" />
                         <Button Grid.Column = "0" Width="100" Style="{DynamicResource ButtonStyle2}" Click="btnHome_Click"/>
                     </Grid>
